@@ -91,7 +91,7 @@ var LoginComponent = (function () {
                         //sessionStorage.setItem("id",data.id.toString());
                         sessionStorage.setItem("phone_number", (data.phone_number) ? data.phone_number : "");
                         sessionStorage.setItem("access_token", data.access_token);
-                        //sessionStorage.setItem("email_sub",data.email_sub);
+                        sessionStorage.setItem("email_sub", data.email_sub == true ? "true" : "false");
                     });
                     sessionStorage.setItem("EmployeeInfo", _this._EmployeeInfo.email);
                     _this.router.navigateByUrl('home');

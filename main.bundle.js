@@ -521,7 +521,6 @@ var ApiService = (function () {
     ApiService.prototype.setHeaders = function () {
         var headersConfig = {
             'Content-Type': 'application/json',
-            'Vary': 'Accept'
         };
         if (this.jwtService.getToken()) {
             headersConfig['Authorization'] = "Token " + this.jwtService.getToken();
@@ -1030,7 +1029,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/home/usersetting/usersetting.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-8\">\n    <div class=\"card\">\n      <div class=\"card-header\" data-background-color=\"purple\">\n        <h4 class=\"title\">Edit Profile</h4>\n\n      </div>\n      <div class=\"card-content\">\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Fist Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.first_name\" name=\"first_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Last Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.last_name\" name=\"last_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Username</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.username\" name=\"username\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Phone number</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.phone_number\" name=\"phone_number\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n              <div class=\"col-md-5\">\n                <div class=\"form-group label-floating \">\n                  <label class=\"control-label\">Email</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.email\" name=\"email\">\n                  <span class=\"material-input\"></span>\n                </div>\n              </div>\n            \n            </div>\n        </form>\n\n\n        <br>\n\n        <label class=\"checkbox-inline\">\n          <input type=\"checkbox\" value=\"\" [checked]=\"_UserInfo.email_sub\" (change)=\"_UserInfo.email_sub = !_UserInfo.email_sub\" name=\"email_sub\"> Send me weekly reports</label>\n        <div class=\"clearfix\" style=\"color: red\">{{_UpdateProfileError}}</div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"UpdateProfile()\">Update Profile</button>\n        <br>\n        <br>\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Current</label>\n                <input id=\"\" type=\"password\" id=\"old_password\" name=\"old_password\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.old_password\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">New password</label>\n                <input type=\"password\" id=\"new_password1\" name=\"new_password1\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password1\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">And again</label>\n                <input type=\"password\" id=\"new_password2\" name=\"new_password2\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password2\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating\">\n                <label>At least 8 charecters, combining letters and numbers</label>\n              </div>\n            </div>\n          </div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"PostChangePassword()\">Change PassWord</button>\n        <div class=\"clearfix\" style=\"color: red\">{{_ChangePasswordError}}</div>\n        </form>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-8\">\n    <div class=\"card\">\n      <div class=\"card-header\" data-background-color=\"purple\">\n        <h4 class=\"title\">Edit Profile</h4>\n\n      </div>\n      <div class=\"card-content\">\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Fist Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.first_name\" name=\"first_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Last Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.last_name\" name=\"last_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Username</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.username\" name=\"username\">\n                <span class=\"material-input\" *ngIf=\"!_UserInfo.username\" style=\"color:red \" >This field may required</span>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Phone number</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.phone_number\" name=\"phone_number\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n              <div class=\"col-md-5\">\n                <div class=\"form-group label-floating \">\n                  <label class=\"control-label\">Email</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.email\" name=\"email\" disabled=\"disabled\">\n                  <span class=\"material-input\"></span>\n                </div>\n              </div>\n            \n            </div>\n        </form>\n\n\n        <br>\n\n        <label class=\"checkbox-inline\">\n          <input type=\"checkbox\" value=\"\" [checked]=\"_UserInfo.email_sub\" (change)=\"_UserInfo.email_sub = !_UserInfo.email_sub\" name=\"email_sub\"> Send me weekly reports</label>\n        <div class=\"clearfix\" style=\"color: red\">{{_UpdateProfileError}}</div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"UpdateProfile()\">Update Profile</button>\n        <br>\n        <br>\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Current</label>\n                <input id=\"\" type=\"password\" id=\"old_password\" name=\"old_password\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.old_password\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">New password</label>\n                <input type=\"password\" id=\"new_password1\" name=\"new_password1\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password1\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">And again</label>\n                <input type=\"password\" id=\"new_password2\" name=\"new_password2\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password2\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating\">\n                <label>At least 8 charecters, combining letters and numbers</label>\n              </div>\n            </div>\n          </div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"PostChangePassword()\">Change PassWord</button>\n        <div class=\"clearfix\" style=\"color: red\">{{_ChangePasswordError}}</div>\n        </form>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -1073,6 +1072,7 @@ var UsersettingComponent = (function () {
         this._UserInfo.username = sessionStorage.getItem("username");
         this._UserInfo.email_sub = (sessionStorage.getItem("email_sub") === "true");
         this._UserInfo.access_token = sessionStorage.getItem("access_token");
+        this._UserInfo.email = sessionStorage.getItem("email");
     };
     UsersettingComponent.prototype.ngOnInit = function () {
         document.getElementById("old_password").focus();
@@ -1080,27 +1080,35 @@ var UsersettingComponent = (function () {
     UsersettingComponent.prototype.UpdateProfile = function () {
         var _this = this;
         debugger;
-        this._RegistersService.UpdateUserDetails("rest-auth/user/", this._UserInfo).subscribe(function (data) {
-            debugger;
-            _this._UpdateProfileError = "Profile saved successfully";
-            var obj = data;
-            // sessionStorage.setItem("pk",data.pk.toString());
-            sessionStorage.setItem("username", (data.username) ? data.username : "");
-            sessionStorage.setItem("email", (data.email) ? data.email : "");
-            sessionStorage.setItem("first_name", (data.first_name) ? data.first_name : "");
-            sessionStorage.setItem("last_name", (data.last_name) ? data.last_name : "");
-            //sessionStorage.setItem("id",data.id.toString());
-            sessionStorage.setItem("phone_number", (data.phone_number) ? data.phone_number : "");
-            sessionStorage.setItem("access_token", data.access_token);
-            sessionStorage.setItem("email_sub", data.email_sub);
-            debugger;
+        if (this._UserInfo.username) {
+            this._RegistersService.UpdateUserDetails("rest-auth/user/", this._UserInfo).subscribe(function (data) {
+                debugger;
+                _this._UpdateProfileError = "Profile saved successfully";
+                setTimeout(function () {
+                    _this._UpdateProfileError = "";
+                }, 2000);
+                var obj = data;
+                // sessionStorage.setItem("pk",data.pk.toString());
+                sessionStorage.setItem("username", (data.username) ? data.username : "");
+                sessionStorage.setItem("email", (data.email) ? data.email : "");
+                sessionStorage.setItem("first_name", (data.first_name) ? data.first_name : "");
+                sessionStorage.setItem("last_name", (data.last_name) ? data.last_name : "");
+                //sessionStorage.setItem("id",data.id.toString());
+                sessionStorage.setItem("phone_number", (data.phone_number) ? data.phone_number : "");
+                sessionStorage.setItem("access_token", data.access_token);
+                sessionStorage.setItem("email_sub", data.email_sub);
+                debugger;
+            }
+            //, error => { hElement.getElementsByTagName('p')[2].innerText = error.type === "error" ? "error" : error["non_field_errors"][0] });      
+            , function (error) {
+                debugger;
+                var obj = error;
+                _this._UpdateProfileError = Object.keys(obj)[0] + " : " + obj[Object.keys(obj)[0]][0];
+                setTimeout(function () {
+                    _this._UpdateProfileError = "";
+                }, 2000);
+            });
         }
-        //, error => { hElement.getElementsByTagName('p')[2].innerText = error.type === "error" ? "error" : error["non_field_errors"][0] });      
-        , function (error) {
-            debugger;
-            var obj = error;
-            _this._UpdateProfileError = Object.keys(obj)[0] + " : " + obj[Object.keys(obj)[0]][0];
-        });
     };
     UsersettingComponent.prototype.PostChangePassword = function () {
         var _this = this;
