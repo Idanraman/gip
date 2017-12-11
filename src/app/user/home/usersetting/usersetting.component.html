@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header" data-background-color="purple">
+        <h4 class="title">Change Password</h4>
+      </div>
+      <div class="card-content">
+        <form>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="form-group label-floating">
+                <label class="control-label">Current</label>
+                <input id="" type="text" id="old_password" name="old_password" class="form-control required" [(ngModel)]="_ChangePassWord.old_password" maxlength="20">
+                <p style="color: red"></p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group label-floating">
+                <label class="control-label">New password</label>
+                <input type="text" id="new_password1" name="new_password1" class="form-control required" [(ngModel)]="_ChangePassWord.new_password1" maxlength="20">
+                <p style="color: red"></p>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group label-floating">
+                <label class="control-label">And again</label>
+                <input type="text" id="new_password2" name="new_password2" class="form-control required" [(ngModel)]="_ChangePassWord.new_password2" maxlength="20">
+                <p style="color: red"></p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group label-floating">
+                <label>At least 8 charecters, combining letters and numbers</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary pull-right" (click)="PostChangePassword()">Change PassWord</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
