@@ -72,8 +72,8 @@ var LoginComponent = (function () {
     //page initialization code here
     LoginComponent.prototype.ngOnInit = function () {
         this._EmployeeInfo = new __WEBPACK_IMPORTED_MODULE_1__shared__["c" /* EmployeeInfo */]();
-        this._EmployeeInfo.email = "demo@gmail.com";
-        this._EmployeeInfo.password = "Info@1234";
+        this._EmployeeInfo.email = "inir@gmail.com";
+        this._EmployeeInfo.password = "static313";
         document.getElementById("email").focus();
     };
     //login button click event..

@@ -171,7 +171,7 @@ var AppModule = (function () {
             providers: [{ provide: __WEBPACK_IMPORTED_MODULE_10__angular_common__["LocationStrategy"], useClass: __WEBPACK_IMPORTED_MODULE_10__angular_common__["HashLocationStrategy"] }, {
                     provide: __WEBPACK_IMPORTED_MODULE_3__angular_http__["g" /* XSRFStrategy */],
                     useValue: new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* CookieXSRFStrategy */]('csrftoken', 'X-CSRFToken')
-                }, __WEBPACK_IMPORTED_MODULE_9__shared__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_9__shared__["d" /* JwtService */], __WEBPACK_IMPORTED_MODULE_8__shared_service_loginapi_index__["b" /* UserService */], __WEBPACK_IMPORTED_MODULE_8__shared_service_loginapi_index__["a" /* RegistersService */], __WEBPACK_IMPORTED_MODULE_13__app_user_home__["b" /* NoAuthGuard */], __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_core__["CookieService"]],
+                }, __WEBPACK_IMPORTED_MODULE_9__shared__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_9__shared__["d" /* JwtService */], __WEBPACK_IMPORTED_MODULE_8__shared_service_loginapi_index__["c" /* UserService */], __WEBPACK_IMPORTED_MODULE_8__shared_service_loginapi_index__["a" /* RegistersService */], __WEBPACK_IMPORTED_MODULE_13__app_user_home__["b" /* NoAuthGuard */], __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_core__["CookieService"], __WEBPACK_IMPORTED_MODULE_8__shared_service_loginapi_index__["b" /* UserNotificationService */]],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
@@ -428,6 +428,7 @@ var ErrorInfo = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__loginmodel__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__loginmodel__["c"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__loginmodel__["d"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_1__loginmodel__["e"]; });
 
 
 
@@ -444,6 +445,9 @@ var ErrorInfo = (function () {
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__register_model__["a"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_1__register_model__["b"]; });
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_1__register_model__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__usernotification_model__ = __webpack_require__("../../../../../src/app/shared/model/loginmodel/usernotification.model.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_2__usernotification_model__["a"]; });
+
 
 
 
@@ -488,6 +492,28 @@ var UserInfo = (function () {
     function UserInfo() {
     }
     return UserInfo;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/model/loginmodel/usernotification.model.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export Result */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserNotification; });
+var Result = (function () {
+    function Result() {
+    }
+    return Result;
+}());
+
+var UserNotification = (function () {
+    function UserNotification() {
+    }
+    return UserNotification;
 }());
 
 
@@ -599,8 +625,15 @@ var ApiService = (function () {
         // return this.http.post(`${this.baseUrl}/create`, bodyString, options)
         //     .map((res: Response) => res.json())
     };
-    ApiService.prototype.delete = function (path) {
-        return this.http.delete("" + __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */].api_url + path, { headers: this.setHeaders() })
+    ApiService.prototype.delete = function (path, params) {
+        if (params === void 0) { params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* URLSearchParams */](); }
+        return this.http.delete("" + __WEBPACK_IMPORTED_MODULE_1__environments_environment__["a" /* environment */].api_url + path, { headers: this.setHeaders(), search: params })
+            .catch(this.formatErrors)
+            .map(function (res) { res.json(); });
+    };
+    ApiService.prototype.getWithUrl = function (path, params) {
+        if (params === void 0) { params = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["f" /* URLSearchParams */](); }
+        return this.http.get("" + path, { headers: this.setHeaders(), search: params })
             .catch(this.formatErrors)
             .map(function (res) { return res.json(); });
     };
@@ -715,9 +748,12 @@ var JwtService = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__user_service__ = __webpack_require__("../../../../../src/app/shared/service/loginapi/user.service.ts");
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__user_service__["a"]; });
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__user_service__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__register_service__ = __webpack_require__("../../../../../src/app/shared/service/loginapi/register.service.ts");
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_1__register_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__usernotification_service__ = __webpack_require__("../../../../../src/app/shared/service/loginapi/usernotification.service.ts");
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_2__usernotification_service__["a"]; });
+
 
 
 
@@ -874,6 +910,60 @@ var UserService = (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_7__api_service__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */], __WEBPACK_IMPORTED_MODULE_8__jwt_service__["a" /* JwtService */]])
     ], UserService);
     return UserService;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/shared/service/loginapi/usernotification.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserNotificationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__api_service__ = __webpack_require__("../../../../../src/app/shared/service/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__jwt_service__ = __webpack_require__("../../../../../src/app/shared/service/jwt.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+ // It's for get set token
+ //dirstory token method
+var UserNotificationService = (function () {
+    //constructor for create object for class then create all object for service like...
+    function UserNotificationService(apiService, http, jwtService) {
+        this.apiService = apiService;
+        this.http = http;
+        this.jwtService = jwtService;
+    }
+    //Get Notification Codee here.......
+    UserNotificationService.prototype.GetNotification = function (route) {
+        return this.apiService.getWithUrl(route)
+            .map(function (data) { return data; });
+    };
+    //Get Notification Codee here.......
+    UserNotificationService.prototype.DeleteNotification = function (route) {
+        return this.apiService.delete(route)
+            .map(function (data) { return data; });
+    };
+    UserNotificationService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4__api_service__["a" /* ApiService */], __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */], __WEBPACK_IMPORTED_MODULE_5__jwt_service__["a" /* JwtService */]])
+    ], UserNotificationService);
+    return UserNotificationService;
 }());
 
 
@@ -1051,7 +1141,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/home/usernotification/usernotification.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"content\">\n  <div class=\"container-fluid\">\n\n\n    <div class=\"col-md-12\">\n      <div class=\"card card-plain\">\n        <div class=\"card-header\" data-background-color=\"purple\">\n          <h4 class=\"title\">Notifications</h4>\n          <p class=\"category\">See whats going on with your page</p>\n        </div>\n        <div class=\"card-content table-responsive\">\n          <table class=\"table table-hover\">\n            <tbody>\n              <tr>\n                <td>1</td>\n                <td>Your weekly report is ready</td>\n                <td>5 Minutes ago</td>\n\n              </tr>\n              <tr>\n                <td>2</td>\n                <td>Your competitor\n                  <b>Google</b> has just posted a new post</td>\n                <td>10 Minutes ago</td>\n              </tr>\n              <tr>\n                <td>3</td>\n                <td>You have a new message that we analyzed as a complaint</td>\n                <td>3:45 PM</td>\n              </tr>\n              <tr>\n                <td>4</td>\n                <td>Your data files are avilable for download</td>\n                <td>2:21 PM</td>\n              </tr>\n              <tr>\n                <td>5</td>\n                <td>\n                  <b>First processing have been completed.</b> Check out the different sections to see what we came up with</td>\n                <td>Yesterday at 7:03 PM</td>\n              </tr>\n              <tr>\n                <td>6</td>\n                <td>\n                  <b>We have collected all of your posts.</b> Processing has began</td>\n                <td>November 16th 6:43PM</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <footer class=\"footer\">\n    <div class=\"container-fluid\">\n      <nav class=\"pull-left\">\n        <ul>\n          <li>\n            <a href=\"#\">\n              Home\n            </a>\n          </li>\n          <li>\n            <a href=\"#\">\n              Company\n            </a>\n          </li>\n          <li>\n            <a href=\"#\">\n              Portfolio\n            </a>\n          </li>\n          <li>\n            <a href=\"#\">\n              Blog\n            </a>\n          </li>\n        </ul>\n      </nav>\n      <p class=\"copyright pull-right\">\n        &copy;\n        <script>document.write(new Date().getFullYear())</script>\n        <a href=\"http://www.creative-tim.com\">Creative Tim</a>, made with love for a better web\n      </p>\n    </div>\n  </footer>\n</div>"
+module.exports = "<div class=\"content\">\n  <div class=\"container-fluid\">\n\n\n    <div class=\"col-md-12\">\n      <div class=\"card card-plain\">\n        <div class=\"card-header\" data-background-color=\"purple\">\n          <h4 class=\"title\">Notifications</h4>\n          <p class=\"category\">See whats going on with your page</p>\n        </div>\n        <div class=\"card-content table-responsive\">\n          <table class=\"table table-hover\">\n            <tbody *ngFor=\"let item of this._UserNotification.results\">\n              <tr>\n                <td>{{item.id}}</td>\n                <td>{{item.text}}</td>\n                <td>{{item.time_created | date : 'MMM d, y h:mm:ss a' }}</td>\n                <td>\n                  <a href=\"javascript:void(0);\" (click)=\"NotificationDelete(item.id); \"><i class=\" fa fa-trash-o \" aria-hidden=\"true \"></i></a>\n                </td>\n              </tr>\n            </tbody>\n            <tfoot>\n              <tr>\n\n                <td>\n                  <button type=\"button \" class=\"btn btn-primary pull-left \" (click)=\"BtnNotification(this._UserNotification.previous)\n                    \" [disabled]=\"!this._UserNotification.previous \">Prev</button>\n                </td>\n                <td>\n                  <button type=\"button \" class=\"btn btn-primary pull-right \" (click)=\"BtnNotification(this._UserNotification.next)\n                    \" [disabled]=\"!this._UserNotification.next \">Next</button>\n                </td>\n              </tr>\n            </tfoot>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n\n\n</div>"
 
 /***/ }),
 
@@ -1061,6 +1151,9 @@ module.exports = "<div class=\"content\">\n  <div class=\"container-fluid\">\n\n
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsernotificationComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_service_loginapi__ = __webpack_require__("../../../../../src/app/shared/service/loginapi/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_model__ = __webpack_require__("../../../../../src/app/shared/model/index.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1071,10 +1164,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
+
 var UsernotificationComponent = (function () {
-    function UsernotificationComponent() {
+    function UsernotificationComponent(_UserNotificationService) {
+        this._UserNotificationService = _UserNotificationService;
+        this._UserNotification = new __WEBPACK_IMPORTED_MODULE_2__shared_model__["e" /* UserNotification */]();
+        this.GetNotification("" + __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].api_url + 'notification/?limit=10');
     }
     UsernotificationComponent.prototype.ngOnInit = function () {
+    };
+    UsernotificationComponent.prototype.BtnNotification = function (Url) {
+        this.GetNotification(Url);
+    };
+    UsernotificationComponent.prototype.GetNotification = function (Url) {
+        var _this = this;
+        if (Url != null) {
+            this._UserNotificationService.GetNotification(Url).subscribe(function (data) {
+                _this._UserNotification.count = data.count,
+                    _this._UserNotification.next = data.next,
+                    _this._UserNotification.previous = data.previous,
+                    _this._UserNotification.results = data.results;
+            });
+        }
+    };
+    UsernotificationComponent.prototype.NotificationDelete = function (id) {
+        var _this = this;
+        this._UserNotificationService.DeleteNotification('notification/' + id + '/').subscribe(function (data) { _this.GetNotification("" + __WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].api_url + 'notification/?limit=10'); });
     };
     UsernotificationComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -1082,7 +1199,7 @@ var UsernotificationComponent = (function () {
             template: __webpack_require__("../../../../../src/app/user/home/usernotification/usernotification.component.html"),
             styles: [__webpack_require__("../../../../../src/app/user/home/usernotification/usernotification.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__shared_service_loginapi__["b" /* UserNotificationService */]])
     ], UsernotificationComponent);
     return UsernotificationComponent;
 }());
