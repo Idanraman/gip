@@ -74,7 +74,6 @@ var RegisterComponent = (function () {
         document.getElementById("email").focus();
     };
     RegisterComponent.prototype.signInWithFB = function () {
-        debugger;
         this.authService.signIn(__WEBPACK_IMPORTED_MODULE_4_angular4_social_login__["FacebookLoginProvider"].PROVIDER_ID);
     };
     //register code here....

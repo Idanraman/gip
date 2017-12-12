@@ -143,7 +143,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var config = new __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["AuthServiceConfig"]([
     {
         id: __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["FacebookLoginProvider"].PROVIDER_ID,
-        provider: new __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["FacebookLoginProvider"]("282542822152409")
+        provider: new __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["FacebookLoginProvider"]("290907454582778")
     }
 ]);
 var AppModule = (function () {
@@ -952,6 +952,8 @@ module.exports = "\n\n<router-outlet></router-outlet>"
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_service_loginapi_register_service__ = __webpack_require__("../../../../../src/app/shared/service/loginapi/register.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular4_social_login__ = __webpack_require__("../../../../angular4-social-login/angular4-social-login.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angular4_social_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angular4_social_login__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -964,13 +966,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var HomeComponent = (function () {
-    function HomeComponent(router, _RegistersService) {
+    function HomeComponent(router, _RegistersService, authService) {
         this.router = router;
         this._RegistersService = _RegistersService;
+        this.authService = authService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
         debugger;
+        this.authService.authState.subscribe(function (user) {
+            _this.user = user;
+            _this.loggedIn = (user != null);
+        });
     };
     HomeComponent.prototype.LogOut = function () {
         this.router.navigateByUrl('login');
@@ -982,7 +991,7 @@ var HomeComponent = (function () {
             styles: [__webpack_require__("../../../../../src/app/user/home/home.component.css")],
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_2__shared_service_loginapi_register_service__["a" /* RegistersService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_2__shared_service_loginapi_register_service__["a" /* RegistersService */], __WEBPACK_IMPORTED_MODULE_3_angular4_social_login__["AuthService"]])
     ], HomeComponent);
     return HomeComponent;
 }());
