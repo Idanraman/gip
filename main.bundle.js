@@ -672,27 +672,27 @@ var JwtService = (function () {
             return parts.pop().split(";").shift();
     };
     JwtService.prototype.getToken = function () {
-        return window.localStorage['jwtToken'];
+        return window.sessionStorage.getItem('jwtToken');
     };
     JwtService.prototype.getCsrt = function () {
-        return window.localStorage['csrftoken'];
+        return window.sessionStorage.getItem('csrftoken');
     };
     JwtService.prototype.saveToken = function (token) {
-        window.localStorage['csrftoken'] = this.getCookie('csrftoken');
-        window.localStorage['jwtToken'] = token;
+        sessionStorage.setItem('csrftoken', this.getCookie('csrftoken'));
+        sessionStorage.setItem('jwtToken', token.toString());
     };
     JwtService.prototype.destroyToken = function () {
-        window.localStorage.removeItem('csrftoken');
-        window.localStorage.removeItem('jwtToken');
+        window.sessionStorage.removeItem('csrftoken');
+        window.sessionStorage.removeItem('jwtToken');
     };
     JwtService.prototype.getError = function () {
-        return window.localStorage['jwtToken'];
+        return window.sessionStorage.getItem('jwtToken');
     };
     JwtService.prototype.saveError = function (Error) {
-        window.localStorage['jwtError'] = Error;
+        window.sessionStorage.setItem('jwtError', Error.toString());
     };
     JwtService.prototype.destroyError = function () {
-        window.localStorage.removeItem('jwtError');
+        window.sessionStorage.removeItem('jwtError');
     };
     JwtService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),

@@ -73,8 +73,19 @@ var RegisterComponent = (function () {
         this._RegisterInfo = new __WEBPACK_IMPORTED_MODULE_1__shared__["e" /* RegisterInfo */]();
         document.getElementById("email").focus();
     };
+    RegisterComponent.prototype.signOut = function () {
+        this.authService.signOut();
+    };
     RegisterComponent.prototype.signInWithFB = function () {
-        this.authService.signIn(__WEBPACK_IMPORTED_MODULE_4_angular4_social_login__["FacebookLoginProvider"].PROVIDER_ID);
+        this.authService.signIn(__WEBPACK_IMPORTED_MODULE_4_angular4_social_login__["FacebookLoginProvider"].PROVIDER_ID).then(function (value) {
+            //SUCCESS
+            alert('asdfad');
+            console.log(value);
+        }, function (error) {
+            //FAILURE
+            alert('asdfad');
+            console.log(error);
+        });
     };
     //register code here....
     RegisterComponent.prototype.PostRegister = function () {
