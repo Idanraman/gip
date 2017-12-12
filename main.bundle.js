@@ -114,6 +114,8 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__app_user_home__ = __webpack_require__("../../../../../src/app/user/home/index.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_core__ = __webpack_require__("../../../../angular2-cookie/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_angular2_cookie_core___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_angular2_cookie_core__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__ = __webpack_require__("../../../../angular4-social-login/angular4-social-login.umd.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_angular4_social_login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_angular4_social_login__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -136,6 +138,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
+var config = new __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["AuthServiceConfig"]([
+    {
+        id: __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["FacebookLoginProvider"].PROVIDER_ID,
+        provider: new __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["FacebookLoginProvider"]("282542822152409")
+    }
+]);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -151,7 +161,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_11__angular_common_http__["b" /* HttpClientModule */], __WEBPACK_IMPORTED_MODULE_10__angular_common__["CommonModule"],
-                __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_routing__["a" /* AppRoutes */])
+                __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_routing__["a" /* AppRoutes */]),
+                __WEBPACK_IMPORTED_MODULE_15_angular4_social_login__["SocialLoginModule"].initialize(config)
             ],
             providers: [{ provide: __WEBPACK_IMPORTED_MODULE_10__angular_common__["LocationStrategy"], useClass: __WEBPACK_IMPORTED_MODULE_10__angular_common__["HashLocationStrategy"] }, {
                     provide: __WEBPACK_IMPORTED_MODULE_3__angular_http__["g" /* XSRFStrategy */],
@@ -1029,7 +1040,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/home/usersetting/usersetting.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-8\">\n    <div class=\"card\">\n      <div class=\"card-header\" data-background-color=\"purple\">\n        <h4 class=\"title\">Edit Profile</h4>\n\n      </div>\n      <div class=\"card-content\">\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Fist Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.first_name\" name=\"first_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Last Name</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.last_name\" name=\"last_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Username</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.username\" name=\"username\">\n                <span class=\"material-input\" *ngIf=\"!_UserInfo.username\" style=\"color:red \" >This field may required</span>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Phone number</label>\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.phone_number\" name=\"phone_number\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n              <div class=\"col-md-5\">\n                <div class=\"form-group label-floating \">\n                  <label class=\"control-label\">Email</label>\n                  <input type=\"text\" class=\"form-control\" [(ngModel)]=\"_UserInfo.email\" name=\"email\" disabled=\"disabled\">\n                  <span class=\"material-input\"></span>\n                </div>\n              </div>\n            \n            </div>\n        </form>\n\n\n        <br>\n\n        <label class=\"checkbox-inline\">\n          <input type=\"checkbox\" value=\"\" [checked]=\"_UserInfo.email_sub\" (change)=\"_UserInfo.email_sub = !_UserInfo.email_sub\" name=\"email_sub\"> Send me weekly reports</label>\n        <div class=\"clearfix\" style=\"color: red\">{{_UpdateProfileError}}</div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"UpdateProfile()\">Update Profile</button>\n        <br>\n        <br>\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Current</label>\n                <input id=\"\" type=\"password\" id=\"old_password\" name=\"old_password\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.old_password\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">New password</label>\n                <input type=\"password\" id=\"new_password1\" name=\"new_password1\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password1\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">And again</label>\n                <input type=\"password\" id=\"new_password2\" name=\"new_password2\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password2\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating\">\n                <label>At least 8 charecters, combining letters and numbers</label>\n              </div>\n            </div>\n          </div>\n        <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"PostChangePassword()\">Change PassWord</button>\n        <div class=\"clearfix\" style=\"color: red\">{{_ChangePasswordError}}</div>\n        </form>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-8\">\n    <div class=\"card\">\n      <div class=\"card-header\" data-background-color=\"purple\">\n        <h4 class=\"title\">Edit Profile</h4>\n\n      </div>\n      <div class=\"card-content\">\n        <form>\n          <div class=\"row\">\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Fist Name</label>\n                <input type=\"text\" class=\"form-control Profile\" [(ngModel)]=\"_UserInfo.first_name\" name=\"first_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Last Name</label>\n                <input type=\"text\" class=\"form-control Profile\" [(ngModel)]=\"_UserInfo.last_name\" name=\"last_name\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Username</label>\n                <input type=\"text\" class=\"form-control Profile\" [(ngModel)]=\"_UserInfo.username\" name=\"username\">\n                <span class=\"material-input\" *ngIf=\"!_UserInfo.username\" style=\"color:red \">This field may required</span>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Phone number</label>\n                <input type=\"text\" class=\"form-control Profile\" [(ngModel)]=\"_UserInfo.phone_number\" name=\"phone_number\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-5\">\n              <div class=\"form-group label-floating \">\n                <label class=\"control-label\">Email</label>\n                <input type=\"text\" class=\"form-control Profile\" [(ngModel)]=\"_UserInfo.email\" name=\"email\" disabled=\"disabled\">\n                <span class=\"material-input\"></span>\n              </div>\n            </div>\n\n          </div>\n        </form>\n\n\n        <br>\n\n        <label class=\"checkbox-inline\">\n          <input type=\"checkbox\" value=\"\" [checked]=\"_UserInfo.email_sub\" (change)=\"_UserInfo.email_sub = !_UserInfo.email_sub\" name=\"email_sub\"> Send me weekly reports</label>\n        <div class=\"clearfix\" style=\"color: red\">{{_UpdateProfileError}}</div>\n        <!-- <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"UpdateProfile()\">Update Profile</button> -->\n        <br>\n        <br>\n        <hr>\n        <form>\n          <h4>Change Password</h4>\n          <div class=\"row\">\n            <div class=\"col-md-2\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Current</label>\n                <input id=\"\" type=\"password\" id=\"old_password\" name=\"old_password\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.old_password\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">New password</label>\n                <input type=\"password\" id=\"new_password1\" name=\"new_password1\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password1\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-3\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">And again</label>\n                <input type=\"password\" id=\"new_password2\" name=\"new_password2\" class=\"form-control required\" [(ngModel)]=\"_ChangePassWord.new_password2\"\n                  maxlength=\"20\">\n                <p style=\"color: red\"></p>\n              </div>\n            </div>\n            <div class=\"col-md-4\">\n              <div class=\"form-group label-floating\">\n                <label>At least 8 charecters, combining letters and numbers</label>\n              </div>\n            </div>\n          </div>\n          <button type=\"button\" class=\"btn btn-primary pull-right\" (click)=\"ProfileUpdate()\">Update User Setting</button>\n          <div class=\"clearfix\" style=\"color: red\">{{_ChangePasswordError}}</div>\n        </form>\n      </div>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -1065,7 +1076,6 @@ var UsersettingComponent = (function () {
         this.GetUserProfile();
     }
     UsersettingComponent.prototype.GetUserProfile = function () {
-        debugger;
         this._UserInfo.first_name = sessionStorage.getItem("first_name");
         this._UserInfo.last_name = sessionStorage.getItem("last_name");
         this._UserInfo.phone_number = sessionStorage.getItem("phone_number");
@@ -1077,12 +1087,32 @@ var UsersettingComponent = (function () {
     UsersettingComponent.prototype.ngOnInit = function () {
         document.getElementById("old_password").focus();
     };
+    //Required funtion for UserProfile
+    UsersettingComponent.prototype.RequiredForUseProfile = function () {
+        var cnt = 0;
+        var boolean = false;
+        var hElement = this.elRef.nativeElement;
+        var allDivs = hElement.getElementsByClassName('Profile'); //Profile is class name for acccess all input controll
+        for (var i = 0; i < allDivs.length; i++) {
+            if (allDivs[i]['value'].replace(' ', '') != sessionStorage.getItem(allDivs[i]['name'])) {
+                cnt = cnt + 1;
+            }
+        }
+        if (cnt > 0) {
+            if (this._UserInfo.username.replace(' ', '').length === 0) {
+                boolean = false;
+            }
+            else {
+                boolean = true;
+            }
+        }
+        return boolean;
+    };
+    //Change For UserProfile
     UsersettingComponent.prototype.UpdateProfile = function () {
         var _this = this;
-        debugger;
         if (this._UserInfo.username) {
             this._RegistersService.UpdateUserDetails("rest-auth/user/", this._UserInfo).subscribe(function (data) {
-                debugger;
                 _this._UpdateProfileError = "Profile saved successfully";
                 setTimeout(function () {
                     _this._UpdateProfileError = "";
@@ -1097,11 +1127,7 @@ var UsersettingComponent = (function () {
                 sessionStorage.setItem("phone_number", (data.phone_number) ? data.phone_number : "");
                 sessionStorage.setItem("access_token", data.access_token);
                 sessionStorage.setItem("email_sub", data.email_sub);
-                debugger;
-            }
-            //, error => { hElement.getElementsByTagName('p')[2].innerText = error.type === "error" ? "error" : error["non_field_errors"][0] });      
-            , function (error) {
-                debugger;
+            }, function (error) {
                 var obj = error;
                 _this._UpdateProfileError = Object.keys(obj)[0] + " : " + obj[Object.keys(obj)[0]][0];
                 setTimeout(function () {
@@ -1110,40 +1136,26 @@ var UsersettingComponent = (function () {
             });
         }
     };
+    // funtion for ChangePassWord
     UsersettingComponent.prototype.PostChangePassword = function () {
         var _this = this;
-        var hElement = this.elRef.nativeElement;
-        if (this.Required()) {
-            debugger;
-            this._RegistersService.ChangePassword("rest-auth/password/change/", this._ChangePassWord).subscribe(function (data) {
-                debugger;
-                var obj = data;
-                _this._ChangePasswordError = data.detail;
-                setTimeout(function () {
-                    _this._ChangePasswordError = "";
-                }, 2000);
-                _this._ChangePassWord = new __WEBPACK_IMPORTED_MODULE_1__shared__["b" /* ChangePassWord */]();
-                debugger;
-            }
-            //, error => { hElement.getElementsByTagName('p')[2].innerText = error.type === "error" ? "error" : error["non_field_errors"][0] });      
-            , function (error) {
-                debugger;
-                var obj = error;
-                _this._ChangePasswordError = obj[Object.keys(obj)[0]][0];
-                setTimeout(function () {
-                    _this._ChangePasswordError = "";
-                }, 2000);
-            });
-            //this._RegistersService.GetUserDetails('rest-auth/user/').subscribe(data=>{console.log(data)})
-        }
-        else {
+        this._RegistersService.ChangePassword("rest-auth/password/change/", this._ChangePassWord).subscribe(function (data) {
+            var obj = data;
+            _this._ChangePasswordError = data.detail;
             setTimeout(function () {
-                _this.clear();
+                _this._ChangePasswordError = "";
             }, 2000);
-        }
+            _this._ChangePassWord = new __WEBPACK_IMPORTED_MODULE_1__shared__["b" /* ChangePassWord */]();
+        }, function (error) {
+            var obj = error;
+            _this._ChangePasswordError = obj[Object.keys(obj)[0]][0];
+            setTimeout(function () {
+                _this._ChangePasswordError = "";
+            }, 2000);
+        });
     };
     //required filed validation here....!
-    UsersettingComponent.prototype.Required = function () {
+    UsersettingComponent.prototype.RequiredForPassWord = function () {
         var boolean = true;
         var hElement = this.elRef.nativeElement;
         var allDivs = hElement.getElementsByClassName('required');
@@ -1152,7 +1164,7 @@ var UsersettingComponent = (function () {
         }
         for (var i = 0; i < allDivs.length; i++) {
             if (allDivs[i]['value'].replace(' ', '').length === 0) {
-                hElement.getElementsByTagName('p')[i].innerText = allDivs[i]['id'] + ' is Compalsory..';
+                //hElement.getElementsByTagName('p')[i].innerText = allDivs[i]['id'] + ' is Compalsory..';
                 boolean = false;
             }
         }
@@ -1170,6 +1182,18 @@ var UsersettingComponent = (function () {
         var allDivs = hElement.getElementsByClassName('required');
         for (var i = 0; i < hElement.getElementsByTagName('p').length; i++) {
             hElement.getElementsByTagName('p')[i].innerText = '';
+        }
+    };
+    //Profile Update For change filed value 
+    UsersettingComponent.prototype.ProfileUpdate = function () {
+        if (this.RequiredForUseProfile()) {
+            this.UpdateProfile();
+        }
+        if (this.RequiredForPassWord()) {
+            this.PostChangePassword();
+        }
+        else {
+            this._ChangePassWord = new __WEBPACK_IMPORTED_MODULE_1__shared__["b" /* ChangePassWord */]();
         }
     };
     UsersettingComponent = __decorate([
