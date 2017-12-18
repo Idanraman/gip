@@ -486,7 +486,8 @@ h2.title {
 }
 .sidebar .nav li > a,
 .off-canvas-sidebar .nav li > a {
-  margin: 10px 15px;
+  margin: 10px 10px;
+  /* margin: 10px 15px; */
   border-radius: 3px;
   color: #3C4858;
 }
